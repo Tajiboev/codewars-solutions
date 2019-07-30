@@ -7,4 +7,18 @@ Given a number n, could you tell me the numbers he excluded from the sequence?
 
 // output [{a,b}...]
 
-function Nb(n) {}
+function removeNb(n) {
+  if (n <= 0) return [];
+
+  let sum = (n * (n + 1)) / 2,
+    possible_values = [];
+
+  for (let a = 1; a <= n; a++) {
+    let b = (sum - a) / (a + 1);
+    if (b % 1 === 0 && b <= n) possible_values.push([a, b]);
+  }
+
+  return possible_values === [] ? null : possible_values;
+}
+
+console.log(removeNb(26));
